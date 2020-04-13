@@ -10,10 +10,14 @@ const Post = db.sequelize.define('postagens', {
     }
 })
 
-function cadastrarPostagem(postagem) {
+function cadastrarPostagem(postagem, callback) {
     Post.create({
         titulo: postagem.titulo,
         conteudo: postagem.conteudo
+    }).then(function(){
+        callback(null)
+    }).catch(function(error) {
+        callback(error)
     })
 }
 // Criação da tabela
